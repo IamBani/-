@@ -58,38 +58,10 @@ export default {
     }
   },
   created(){
-    this.information();
     this.num=parseInt(Math.random()*100);
     // console.log(this.num);
   },
   methods:{
-    information(){
-            let url=`https://httpbin.org/delay/0?inc=1`;
-                  this.$http.get(url).then((resp)=>{
-                  console.log(resp.data);
-                  //  this.num=resp.data.args.inc;
-              })
-    },
-      disabl(){
-       var id=setInterval(()=>{
-          if(this.num1==0){
-             this.boo=true;
-             this.msg="点击";
-             this.num1=5;
-             clearInterval(id);
-          }else{
-            this.msg=this.num1--;
-          }
-        },1000)
-      },
-      add(){
-        if(this.boo){
-          this.boo=false;
-          this.num++;
-          this.msg=this.num1--;
-          this.disabl();
-        }
-      },
       mag(){
         if(this.textarea==""){
           this.$message({
@@ -106,6 +78,7 @@ export default {
         // })
         // console.log(this.num);
         this.$socket.emit('message',{num:this.num,text:this.textarea});
+        // this.$socket.emit("private_message",this.textarea);
         this.textarea="";
       }
   },
